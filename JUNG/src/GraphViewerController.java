@@ -210,7 +210,7 @@ public class GraphViewerController extends javax.swing.JApplet {
 				String str = vertexLabels.get(v);
 				if (str != null)
 					return str;
-				else return v.toString();
+				else return "";
 			}
 		};
 		vv.getRenderContext().setVertexLabelTransformer(vertexesLabeler);  
