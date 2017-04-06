@@ -174,20 +174,22 @@ public class GraphViewerController extends javax.swing.JApplet {
 		if(backgroundIcon != null) {
 			vv.addPreRenderPaintable(new VisualizationViewer.Paintable(){
 				public void paint(Graphics g) {
-					Graphics2D g2d = (Graphics2D)g;
-					AffineTransform oldXform = g2d.getTransform();
-					AffineTransform lat = 
-							vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.LAYOUT).getTransform();
-					AffineTransform vat = 
-							vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform();
-					AffineTransform at = new AffineTransform();
-					at.concatenate(g2d.getTransform());
-					at.concatenate(vat);
-					at.concatenate(lat);
-					g2d.setTransform(at);
-					g.drawImage(backgroundIcon.getImage(), 0, 0,
-							backgroundIcon.getIconWidth(),backgroundIcon.getIconHeight(),vv);
-					g2d.setTransform(oldXform);
+					if (backgroundIcon != null) {
+						Graphics2D g2d = (Graphics2D)g;
+						AffineTransform oldXform = g2d.getTransform();
+						AffineTransform lat = 
+								vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.LAYOUT).getTransform();
+						AffineTransform vat = 
+								vv.getRenderContext().getMultiLayerTransformer().getTransformer(Layer.VIEW).getTransform();
+						AffineTransform at = new AffineTransform();
+						at.concatenate(g2d.getTransform());
+						at.concatenate(vat);
+						at.concatenate(lat);
+						g2d.setTransform(at);
+						g.drawImage(backgroundIcon.getImage(), 0, 0,
+								backgroundIcon.getIconWidth(),backgroundIcon.getIconHeight(),vv);
+						g2d.setTransform(oldXform);
+					}
 				}
 				public boolean useTransform() { return false; }
 			});
@@ -383,7 +385,7 @@ public class GraphViewerController extends javax.swing.JApplet {
 			Animator animator = new Animator(lt);
 			animator.start();
 		}
-		
+
 		vv.repaint();
 	}
 
@@ -432,6 +434,11 @@ public class GraphViewerController extends javax.swing.JApplet {
 		updateEdgeLabel(k);
 	}
 
+	public void clearEdgeLabel(int k) {
+		edgeCaptions.remove(k);
+		updateEdgeLabel(k);
+	}
+
 	public void updateEdgeLabel(int k) {
 		Number weight, flow;
 		String caption, label;
@@ -454,12 +461,24 @@ public class GraphViewerController extends javax.swing.JApplet {
 		vertexLabels.put(k, label);
 	}
 
+	public void clearVertexLabel(int k) {
+		vertexLabels.remove(k);
+	}
+
 	public void defineEdgeColor(Color c) {
 		definedEdgeColor = c;
 	}
 
+	public void resetEdgeColor() {
+		definedEdgeColor = Color.black;
+	}
+
 	public void setEdgeColor(int k, Color c) {
 		edgeColors.put(k, c);
+	}
+
+	public void clearEdgeColor(int k) {
+		edgeColors.remove(k);
 	}
 
 	public void defineEdgeDashed(Boolean dashed) {
@@ -482,8 +501,16 @@ public class GraphViewerController extends javax.swing.JApplet {
 		definedVertexColor = c;
 	}
 
+	public void resetVertexColor() {
+		definedVertexColor = Color.yellow;
+	}
+
 	public void setVertexColor(int k, Color c) {
 		vertexColors.put(k, c);
+	}
+
+	public void clearVertexColor(int k) {
+		vertexColors.remove(k);
 	}
 
 	public void defineVertexSize(int size) {
@@ -498,11 +525,23 @@ public class GraphViewerController extends javax.swing.JApplet {
 		definedVertexIcon = icon;
 	}
 
+	public void resetVertexIcon() {
+		definedVertexIcon = null;
+	}
+
 	public void setVertexIcon(int k, Icon icon) {
 		vertexIcons.put(k, icon);
 	}
 
+	public void clearVertexIcon(int k) {
+		vertexIcons.remove(k);
+	}
+
 	public void setBackground(String path) {
 		backgroundIcon = new ImageIcon(path);
+	}
+
+	public void clearBackground() {
+		backgroundIcon = null;
 	}
 }
