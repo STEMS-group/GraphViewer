@@ -162,6 +162,18 @@ public class Parser {
 		return false;
 	}
 	
+	private boolean clearEdgeLabel(String[] splitted) {
+		if (splitted.length == 2) {
+			try {
+				gvc.clearEdgeLabel(Integer.parseInt(splitted[1]));
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	private boolean setVertexLabel(String[] splitted) {
 		if (splitted.length>=3) {
 			try {
@@ -171,6 +183,18 @@ public class Parser {
 				gvc.setVertexLabel(Integer.parseInt(splitted[1]), str);
 			}
 			catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean clearVertexLabel(String[] splitted) {
+		if (splitted.length == 2) {
+			try {
+				gvc.clearVertexLabel(Integer.parseInt(splitted[1]));
+			} catch (Exception e) {
 				return false;
 			}
 			return true;
@@ -191,12 +215,32 @@ public class Parser {
 		return false;
 	}
 	
+	private boolean resetEdgeColor(String[] splitted) {
+		if (splitted.length == 1) {
+			gvc.resetEdgeColor();
+			return true;
+		}
+		return false;
+	}
+	
 	private boolean setEdgeColor(String[] splitted) {
 		if (splitted.length == 3) {
 			try {
 				gvc.setEdgeColor(Integer.parseInt(splitted[1]), (Color)Class.forName("java.awt.Color").getField(splitted[2]).get(null));
 			}
 			catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean clearEdgeColor(String[] splitted) {
+		if (splitted.length == 2) {
+			try {
+				gvc.clearEdgeColor(Integer.parseInt(splitted[1]));
+			} catch (Exception e) {
 				return false;
 			}
 			return true;
@@ -269,12 +313,36 @@ public class Parser {
 		return false;
 	}
 	
+	private boolean resetVertexColor(String[] splitted) {
+		if (splitted.length == 1) {
+			try {
+				gvc.resetVertexColor();
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	private boolean setVertexColor(String[] splitted) {
 		if (splitted.length == 3) {
 			try {
 				gvc.setVertexColor(Integer.parseInt(splitted[1]), (Color)Class.forName("java.awt.Color").getField(splitted[2]).get(null));
 			}
 			catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean clearVertexColor(String[] splitted) {
+		if (splitted.length == 2) {
+			try {
+				gvc.clearVertexColor(Integer.parseInt(splitted[1]));
+			} catch (Exception e) {
 				return false;
 			}
 			return true;
@@ -321,6 +389,18 @@ public class Parser {
 		return false;
 	}
 	
+	private boolean clearVertexIcon(String[] splitted) {
+		if (splitted.length == 2) {
+			try {
+				gvc.clearVertexIcon(Integer.parseInt(splitted[1]));
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	private boolean defineVertexIcon(String[] splitted) {
 		if (splitted.length == 2) {
 			try {
@@ -329,6 +409,14 @@ public class Parser {
 			catch (Exception e) {
 				return false;
 			}
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean resetVertexIcon(String[] splitted) {
+		if (splitted.length == 1) {
+			gvc.resetVertexIcon();
 			return true;
 		}
 		return false;
@@ -356,6 +444,14 @@ public class Parser {
 		return false;
 	}
 	
+	private boolean clearBackground(String[] splitted) {
+		if (splitted.length == 1) {
+			gvc.clearBackground();
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean parseString(String str) {
 		String[] splitted = str.split(" ");
 		if (splitted[0].equals("newGraph"))
@@ -376,12 +472,20 @@ public class Parser {
 			return removeEdge(splitted);
 		if (splitted[0].equals("setEdgeLabel"))
 			return setEdgeLabel(splitted);
+		if (splitted[0].equals("clearEdgeLabel"))
+			return clearEdgeLabel(splitted);
 		if (splitted[0].equals("setVertexLabel"))
 			return setVertexLabel(splitted);
+		if (splitted[0].equals("clearVertexLabel"))
+			return clearVertexLabel(splitted);
 		if (splitted[0].equals("defineEdgeColor"))
 			return defineEdgeColor(splitted);
+		if (splitted[0].equals("resetEdgeColor"))
+			return resetEdgeColor(splitted);
 		if (splitted[0].equals("setEdgeColor"))
 			return setEdgeColor(splitted);
+		if (splitted[0].equals("clearEdgeColor"))
+			return clearEdgeColor(splitted);
 		if (splitted[0].equals("defineEdgeDashed"))
 			return defineEdgeDashed(splitted);
 		if (splitted[0].equals("setEdgeDashed"))
@@ -392,18 +496,28 @@ public class Parser {
 			return setEdgeThickness(splitted);
 		if (splitted[0].equals("defineVertexColor"))
 			return defineVertexColor(splitted);
+		if (splitted[0].equals("resetVertexColor"))
+			return resetVertexColor(splitted);
 		if (splitted[0].equals("setVertexColor"))
 			return setVertexColor(splitted);
+		if (splitted[0].equals("clearVertexColor"))
+			return clearVertexColor(splitted);
 		if (splitted[0].equals("defineVertexSize"))
 			return defineVertexSize(splitted);
 		if (splitted[0].equals("setVertexSize"))
 			return setVertexSize(splitted);
 		if (splitted[0].equals("defineVertexIcon"))
 			return defineVertexIcon(splitted);
+		if (splitted[0].equals("resetVertexIcon"))
+			return resetVertexIcon(splitted);
 		if (splitted[0].equals("setVertexIcon"))
 			return setVertexIcon(splitted);
+		if (splitted[0].equals("clearVertexIcon"))
+			return clearVertexIcon(splitted);
 		if (splitted[0].equals("setBackground"))
 			return setBackground(splitted);
+		if (splitted[0].equals("clearBackground"))
+			return clearBackground(splitted);
 		if (splitted[0].equals("setEdgeWeight"))
 			return setEdgeWeight(splitted);
 		if (splitted[0].equals("setEdgeFlow"))
