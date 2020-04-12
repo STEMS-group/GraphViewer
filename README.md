@@ -16,7 +16,10 @@ Here follows a tutorial on how students could **setup the CLion IDE and run an e
 
 1. Clone / Download this respository
 2. Open CLion > Open > Choose the example dir in the repository
-3. Run the project. You will the following three different graphs being loaded, in different windows
+
+3. If you are under Windows, you'll need to add the sockets library to your CMakeLists.txt file. In that case, leave uncommented the line "link_libraries(ws2_32 wsock32)" Otherwise, if you are either under Linux or under MacOS, make sure that line is commented.
+
+4. Run the project. You will the following three different graphs being loaded, in different windows
 
 ![Random graph](./example/resources/graphs/random/preview.png)
 ![Random graph](./example/resources/graphs/star/preview.png)
