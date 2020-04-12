@@ -1,0 +1,3 @@
+2
+(2, 1, white , gold_pot , 50, ../resources/graphs/rainbow/gold_pot.png )
+(0.3, 1, white , cloud , 50, ../resources/graphs/rainbow/cloud.png )

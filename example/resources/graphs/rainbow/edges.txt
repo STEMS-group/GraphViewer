@@ -1,0 +1,8 @@
+7
+(0, 1, 0, red , 7, red , % , % )
+(0, 1, 0, orange , 7, orange , % , % )
+(0, 1, 0, yellow , 7, yellow , % , % )
+(0, 1, 0, green , 7, green , % , % )
+(0, 1, 0, cyan , 7, cyan , % , % )
+(0, 1, 0, blue , 7, blue , % , % )
+(0, 1, 0, purple , 7, black , % , % )
