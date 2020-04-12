@@ -2,7 +2,7 @@
 
 **GraphViewer** is a tool for **graph visualization** based on the JUNG framework, in the context of the **Algorithm Design and Analysis** course, at **FEUP**. It has been developed and mantained over the years by the course's Teaching Assistant students.
 
-Here follows a tutorial on how students could **setup the CLion IDE and run an example project** with 3 different graphs being loaded.
+Here follows a tutorial on how students can **setup the CLion IDE and run an example project** with 3 different graphs loaded.
 
 ## Setting up the environment (CLion IDE)
 
