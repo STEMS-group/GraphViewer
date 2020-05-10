@@ -25,5 +25,5 @@ $(ODIR):
 $(LDIR):
 	mkdir -p $(LDIR)
 
-$(ODIR)/%.o: $(ODIR) $(SDIR)/%.cpp
-	$(CC) $(CFLAGS) -c $^ -o $@ -DPWD='"$(shell pwd)"'
+$(ODIR)/%.o: $(SDIR)/%.cpp $(ODIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -DPWD='"$(shell pwd)"'
