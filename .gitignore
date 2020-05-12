@@ -24,3 +24,8 @@ cmake-build-*/
 modules.xml
 .idea/misc.xml
 *.ipr
+
+# Ignore by-products of compilation
+lib/
+obj/
+
